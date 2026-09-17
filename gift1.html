@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For My Favorite Human 💗</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="letter-page">
+
+    <!-- ✨ Sparkles -->
+    <div class="u-star s1">✦</div>
+    <div class="u-star s2">✧</div>
+    <div class="u-star s3">✦</div>
+    <div class="u-star s4">♡</div>
+    <div class="u-star s5">✧</div>
+    <div class="u-star s6">✦</div>
+    <div class="u-star s7">✧</div>
+    <div class="u-star s8">✦</div>
+
+
+    <!-- 🌠 Shooting stars -->
+    <div class="shooting-star ss1"></div>
+    <div class="shooting-star ss2"></div>
+    <div class="shooting-star ss3"></div>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="letter-layout">
+
+
+        <!-- 💌 LEFT: LETTER -->
+        <div class="paper">
+
+            <div id="letterText"></div>
+
+            <span id="cursor">|</span>
+
+        </div>
+
+
+
+        <!-- 🐱 RIGHT: DANCING CAT -->
+        <div class="cat-area">
+
+            <img
+                src="images/dancing-cat.gif"
+                alt="Dancing cat"
+                class="dancing-cat"
+            >
+
+            <div class="cat-hearts">
+                ♡ ✦ ♡
+            </div>
+
+
+            <!-- 🎁 GO BACK BUTTON -->
+            <button
+                class="back-gifts"
+                onclick="goBackToGifts()"
+            >
+                ← Back to gifts 🎁
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        /* 💌 LETTER */
+
+        const letter = `To My Favorite Human 💗
+
+Happy Birthday, bestie! 🎂✨
+
+I’m so lucky to have you in my life. Thank you for all the laughs, the crazy conversations, the random moments, and for always being there. 🥹🫶🏻
+
+You’ve become such a beautiful part of my life, and honestly… I don’t know what I’d do without you. Probably be less chaotic, but definitely way more bored. 😂💀
+
+I hope this year brings you all the happiness, love, and beautiful moments you deserve. Never forget how special you are to me. 💕
+
+Happy Birthday, weirdo. I love you more than you know. 🎀✨`;
+
+
+        const text = document.getElementById("letterText");
+
+        const cursor = document.getElementById("cursor");
+
+        const backButton = document.querySelector(".back-gifts");
+
+
+        let i = 0;
+
+
+        /* Hide GO BACK button at the beginning */
+
+        backButton.style.display = "none";
+
+
+
+        /* ✍️ Type the letter */
+
+        function writeLetter() {
+
+            if (i < letter.length) {
+
+                text.textContent += letter.charAt(i);
+
+                i++;
+
+                setTimeout(writeLetter, 35);
+
+            }
+
+            else {
+
+                /* Letter finished */
+
+                cursor.style.display = "none";
+
+
+                /* Show GO BACK button */
+
+                backButton.style.display = "block";
+
+            }
+
+        }
+
+
+
+        /* Wait for the paper animation first */
+
+        setTimeout(writeLetter, 1800);
+
+
+
+        /* 🎁 GO BACK TO GIFTS */
+
+        function goBackToGifts() {
+
+            window.location.href = "gifts.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Heart Clicker 💕</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="game-page">
+
+    <!-- ✨ Sparkles -->
+    <div class="u-star s1">✦</div>
+    <div class="u-star s2">✧</div>
+    <div class="u-star s3">♡</div>
+    <div class="u-star s4">✦</div>
+    <div class="u-star s5">✧</div>
+    <div class="u-star s6">♡</div>
+
+
+    <!-- 💕 GAME -->
+    <div class="game-container">
+
+        <h1>💕 Heart Clicker 💕</h1>
+
+        <p class="game-intro">
+            Catch 10 hearts before time runs out! ✨
+        </p>
+
+
+        <!-- SCORE -->
+        <div class="score-box">
+
+            <span>
+                Hearts:
+                <strong id="score">0</strong> / 10
+            </span>
+
+            <span>
+                Time:
+                <strong id="time">15</strong>s
+            </span>
+
+        </div>
+
+
+        <!-- GAME AREA -->
+        <div id="gameArea" class="game-area">
+
+            <div id="startMessage">
+
+                <div class="big-heart">💗</div>
+
+                <p>Ready?</p>
+
+                <button id="startButton">
+                    Start Game ✨
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT -->
+        <div id="result" class="result"></div>
+
+
+        <!-- BACK BUTTON -->
+        <button
+            class="back-game"
+            onclick="goBackToGifts()"
+        >
+            ← Back to gifts 🎁
+        </button>
+
+    </div>
+
+
+    <script>
+
+        const gameArea = document.getElementById("gameArea");
+
+        const scoreElement = document.getElementById("score");
+
+        const timeElement = document.getElementById("time");
+
+        const startButton = document.getElementById("startButton");
+
+        const startMessage = document.getElementById("startMessage");
+
+        const result = document.getElementById("result");
+
+
+        let score = 0;
+
+        let timeLeft = 15;
+
+        let timer;
+
+        let heartTimer;
+
+
+        startButton.addEventListener("click", startGame);
+
+
+        function startGame() {
+
+            score = 0;
+
+            timeLeft = 15;
+
+            scoreElement.textContent = score;
+
+            timeElement.textContent = timeLeft;
+
+            result.textContent = "";
+
+            startMessage.style.display = "none";
+
+
+            createHeart();
+
+
+            heartTimer = setInterval(createHeart, 700);
+
+
+            timer = setInterval(() => {
+
+                timeLeft--;
+
+                timeElement.textContent = timeLeft;
+
+
+                if (timeLeft <= 0) {
+
+                    endGame();
+
+                }
+
+            }, 1000);
+
+        }
+
+
+        function createHeart() {
+
+            if (score >= 10) {
+                return;
+            }
+
+
+            const heart = document.createElement("button");
+
+            heart.className = "game-heart";
+
+            heart.textContent = "💗";
+
+            heart.setAttribute(
+                "aria-label",
+                "Heart"
+            );
+
+
+            const maxX =
+                gameArea.clientWidth - 60;
+
+            const maxY =
+                gameArea.clientHeight - 60;
+
+
+            const x =
+                Math.random() * Math.max(maxX, 10);
+
+            const y =
+                Math.random() * Math.max(maxY, 10);
+
+
+            heart.style.left = x + "px";
+
+            heart.style.top = y + "px";
+
+
+            heart.addEventListener(
+                "click",
+                () => {
+
+                    score++;
+
+                    scoreElement.textContent = score;
+
+                    heart.remove();
+
+
+                    if (score >= 10) {
+
+                        winGame();
+
+                    }
+
+                }
+            );
+
+
+            gameArea.appendChild(heart);
+
+
+            setTimeout(() => {
+
+                if (heart.isConnected) {
+
+                    heart.remove();
+
+                }
+
+            }, 1400);
+
+        }
+
+
+        function winGame() {
+
+            clearInterval(timer);
+
+            clearInterval(heartTimer);
+
+
+            document
+                .querySelectorAll(".game-heart")
+                .forEach(heart => heart.remove());
+
+
+            result.innerHTML =
+                "🎉 YOU WIN! 💗<br>" +
+                "<span>You caught all the hearts! ✨</span>";
+
+        }
+
+
+        function endGame() {
+
+            clearInterval(timer);
+
+            clearInterval(heartTimer);
+
+
+            document
+                .querySelectorAll(".game-heart")
+                .forEach(heart => heart.remove());
+
+
+            if (score < 10) {
+
+                result.innerHTML =
+                    "⏰ Time's up!<br>" +
+                    "<span>You caught " +
+                    score +
+                    " hearts 💕</span>";
+
+            }
+
+        }
+
+
+        function goBackToGifts() {
+
+            window.location.href = "gifts.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
