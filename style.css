@@ -2930,4 +2930,70 @@ button:hover {
         object-fit: contain;
     }
 
+}/* 📱 GIFT 2 PHONE FIX */
+@media (max-width: 600px) {
+
+    .song-page {
+        overflow-x: hidden;
+    }
+
+    .song-content {
+        width: 100%;
+        padding: 20px 10px;
+        box-sizing: border-box;
+    }
+
+    .song-content h1 {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .song-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .song-cat {
+        width: 100px;
+        text-align: center;
+    }
+
+    .song-cat img {
+        width: 90px;
+        height: auto;
+    }
+
+    .music-box {
+        width: 90vw;
+        max-width: 340px;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        padding: 5px;
+        box-sizing: border-box;
+        order: 2;
+    }
+
+    .left-cat {
+        order: 1;
+    }
+
+    .right-cat {
+        order: 3;
+    }
+
+    .birthday-video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 12px;
+    }
+
+    .back-song {
+        margin-top: 20px;
+    }
 }
